@@ -1,0 +1,95 @@
+.mainTitle {
+  font-size: var(--font-size-8);
+  line-height: var(--line-height-8);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-2);
+  font-weight: var(--font-weight-bold);
+}
+
+.title {
+  font-size: var(--fs);
+  line-height: var(--lh);
+  letter-spacing: var(--ls, 0em);
+  scroll-margin-top: calc(var(--header-height) + var(--space-3));
+
+  &:where([data-level='2']) {
+    --fs: var(--font-size-6);
+    --lh: var(--line-height-6);
+    --ls: -0.0125em;
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &:where([data-level='3']) {
+    --fs: var(--font-size-4);
+    --lh: var(--line-height-4);
+    --ls: -0.0025em;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-2);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &:where([data-level='4']) {
+    --fs: var(--font-size-4);
+    --lh: var(--line-height-4);
+    --ls: -0.0025em;
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+.headingLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  &:where([data-hovered], [data-focus-visible]) {
+    text-decoration: underline;
+    text-decoration-color: var(--color-text-weak);
+    text-decoration-thickness: from-font;
+    text-underline-position: from-font;
+  }
+}
+
+.headingLink svg {
+  color: var(--color-text-weak);
+  opacity: 0;
+  transform: translateX(-4px);
+
+  transition-timing-function: ease-out;
+  transition-property: transform, opacity;
+  transition-duration: 100ms;
+}
+
+.headingLink:where([data-hovered], [data-focus-visible]) svg {
+  opacity: 1;
+  transform: none;
+}
+
+.headingLink:where([data-focus-visible]) svg {
+  transition: none;
+}
+
+.description {
+  font-size: var(--font-size-4);
+  line-height: var(--line-height-4);
+  letter-spacing: -0.005em;
+  color: var(--color-text-weak);
+  margin-bottom: var(--space-6);
+}
+
+.paragraph {
+  font-size: var(--font-size-3);
+  line-height: var(--line-height-3);
+  margin-bottom: var(--space-4);
+}
+
+.dockDemo {
+  justify-content: flex-start;
+
+  @media (min-width: 500px) {
+    justify-content: center;
+  }
+}

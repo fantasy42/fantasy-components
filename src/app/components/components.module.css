@@ -1,0 +1,25 @@
+.main {
+  padding: var(--space-6) 0;
+
+  @media (min-width: 650px) {
+    padding: var(--space-8) 0;
+  }
+}
+
+.grid {
+  --switcher-target-container-width: 650px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.gridColumn {
+  flex-grow: 1;
+  flex-basis: calc((var(--switcher-target-container-width) - 100%) * 999);
+}
+
+.gridColumn > * + * {
+  margin-top: var(--space-4);
+}

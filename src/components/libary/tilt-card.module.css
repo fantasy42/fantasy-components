@@ -1,0 +1,80 @@
+.root {
+  --perspective: 1000px;
+  --transform-style: preserve-3d;
+
+  perspective: var(--perspective);
+  transform-style: var(--transform-style);
+  backface-visibility: hidden;
+  border-radius: var(--radius-4);
+  aspect-ratio: 9 / 14;
+  height: 225px;
+
+  @media (min-width: 768px) {
+    height: 250px;
+  }
+}
+
+.card {
+  position: relative;
+  transform-style: var(--transform-style);
+  background-color: var(--color-background);
+  box-shadow: 0 0 0 1px var(--color-border-strong);
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: var(--space-3);
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform: translateZ(64px);
+}
+
+.text {
+  font-size: var(--font-size-5);
+  line-height: var(--line-height-5);
+  color: var(--color-accent);
+  font-family: var(--ff-heading);
+}
+
+.heart {
+  width: 56px;
+  height: 56px;
+  color: var(--color-accent);
+}
+
+.effects {
+  pointer-events: none;
+  user-select: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.glare {
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  will-change: transform;
+
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+  background-image: radial-gradient(
+    oklch(from var(--color-green-4) l c h / 80%),
+    transparent 100%
+  );
+}

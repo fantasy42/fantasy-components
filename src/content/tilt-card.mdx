@@ -1,0 +1,252 @@
+export const metadata = {
+  title: 'Tilt Card',
+  description: 'A customizable component with tilt hover effect.'
+}
+
+# Tilt Card
+
+<Description>
+A customizable component with tilt hover effect.
+</Description>
+
+<DemoContainer isRounded>
+  <TiltCardDemo />
+</DemoContainer>
+
+## Code
+
+<Tabs>
+
+<TabsList>
+<Tab id='card'>tilt-card.tsx</Tab>
+<Tab id='css'>tilt-card.module.css</Tab>
+</TabsList>
+
+<TabPanel id='card'>
+```tsx
+// pnpm add motion
+
+'use client';
+
+import {HeartFilledIcon} from '@radix-ui/react-icons';
+import {motion, useMotionTemplate, useMotionValue} from 'motion/react';
+
+import s from './tilt-card.module.css';
+
+interface Offest {
+  x: number;
+  y: number;
+}
+
+function clamp(number_: number, start: number, end: number) {
+  return Math.min(Math.max(number_, start), end);
+}
+
+function getOffest(
+  position: {x: number; y: number},
+  target: EventTarget & HTMLDivElement
+): Offest {
+  const rect = target.getBoundingClientRect();
+
+  const xValue = clamp(position.x, rect.left, rect.right);
+  const yValue = clamp(position.y, rect.top, rect.bottom);
+
+  const x = (xValue - rect.left) / rect.width;
+  const y = (yValue - rect.top) / rect.height;
+
+  return {x, y};
+}
+
+export function TiltCard() {
+  const tiltReverse = false;
+  const tiltMaxAngleX = 20;
+  const tiltMaxAngleY = 20;
+
+  const cardRotateX = useMotionValue(0);
+  const cardRotateY = useMotionValue(0);
+  const glareOpacity = useMotionValue(0);
+  const glareTranslateX = useMotionValue(0);
+  const glareTranslateY = useMotionValue(0);
+
+  function animateCard(offsets: Offest) {
+    let angleX = -(offsets.y - 0.5) * 2 * tiltMaxAngleX;
+    let angleY = (offsets.x - 0.5) * 2 * tiltMaxAngleY;
+
+    if (tiltReverse) {
+      angleX = -angleX;
+      angleY = -angleY;
+    }
+
+    cardRotateX.set(angleX);
+    cardRotateY.set(angleY);
+  }
+
+  function animateSpotGlare(offsets: Offest) {
+    const opacity = Number(
+      (
+        Math.max(Math.abs(offsets.x - 0.5) * 2, Math.abs(offsets.y - 0.5) * 2) *
+        0.5
+      ).toFixed(2)
+    );
+
+    const translateX = (offsets.x - 0.5) * 50;
+    const translateY = (offsets.y - 0.5) * 50;
+
+    glareOpacity.set(opacity);
+    glareTranslateX.set(translateX);
+    glareTranslateY.set(translateY);
+  }
+
+  function resetValues() {
+    for (const value of [
+      cardRotateX,
+      cardRotateY,
+      glareOpacity,
+      glareTranslateX,
+      glareTranslateY,
+    ]) {
+      value.set(0);
+    }
+  }
+
+  return (
+    <div
+      className={s.root}
+      onMouseMove={(event) => {
+        const offsets = getOffest(
+          {x: event.clientX, y: event.clientY},
+          event.currentTarget
+        );
+        animateCard(offsets);
+        animateSpotGlare(offsets);
+      }}
+      onMouseLeave={() => resetValues()}
+      onTouchMove={(event) => {
+        const touch = event.changedTouches[0];
+        if (touch) {
+          const offsets = getOffest(
+            {x: touch.clientX, y: touch.clientY},
+            event.currentTarget
+          );
+          animateCard(offsets);
+          animateSpotGlare(offsets);
+        }
+      }}
+      onTouchEnd={() => resetValues()}
+    >
+      <motion.div
+        className={s.card}
+        style={{
+          transform: useMotionTemplate`rotateX(${cardRotateX}deg) rotateY(${cardRotateY}deg) scale3d(1,1,1)`,
+        }}
+      >
+        <div className={s.content}>
+          <HeartFilledIcon className={s.heart} aria-hidden />
+          <span className={s.text}>
+            Don't Forget
+            <br />
+            To Forget Me
+          </span>
+        </div>
+        <div className={s.effects}>
+          <motion.div
+            className={s.glare}
+            style={{
+              opacity: glareOpacity,
+              transform: useMotionTemplate`translateX(${glareTranslateX}%) translateY(${glareTranslateY}%)`,
+            }}
+          />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+```
+</TabPanel>
+
+<TabPanel id='css'>
+```css
+.root {
+  --perspective: 1000px;
+  --transform-style: preserve-3d;
+
+  perspective: var(--perspective);
+  transform-style: var(--transform-style);
+  backface-visibility: hidden;
+  border-radius: var(--radius-4);
+  aspect-ratio: 9 / 14;
+  height: 225px;
+
+  @media (min-width: 768px) {
+    height: 250px;
+  }
+}
+
+.card {
+  position: relative;
+  transform-style: var(--transform-style);
+  background-color: var(--color-background);
+  box-shadow: 0 0 0 1px var(--color-border-strong);
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: var(--space-3);
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform: translateZ(64px);
+}
+
+.text {
+  font-size: var(--font-size-5);
+  line-height: var(--line-height-5);
+  color: var(--color-accent);
+  font-family: var(--ff-heading);
+}
+
+.heart {
+  width: 56px;
+  height: 56px;
+  color: var(--color-accent);
+}
+
+.effects {
+  pointer-events: none;
+  user-select: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.glare {
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  will-change: transform;
+
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+  background-image: radial-gradient(
+    oklch(from var(--color-green-4) l c h / 80%),
+    transparent 100%
+  );
+}
+```
+</TabPanel>
+
+</Tabs>

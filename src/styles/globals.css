@@ -1,0 +1,95 @@
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 48px;
+  --space-9: 56px;
+  --space-10: 64px;
+  --space-11: 80px;
+  --space-12: 96px;
+
+  --font-size-1: 12px;
+  --font-size-2: 14px;
+  --font-size-3: 16px;
+  --font-size-4: 18px;
+  --font-size-5: 20px;
+  --font-size-6: 24px;
+  --font-size-7: 28px;
+  --font-size-8: 35px;
+  --font-size-9: 60px;
+
+  --line-height-1: 16px;
+  --line-height-2: 20px;
+  --line-height-3: 24px;
+  --line-height-4: 26px;
+  --line-height-5: 28px;
+  --line-height-6: 30px;
+  --line-height-7: 36px;
+  --line-height-8: 40px;
+  --line-height-9: 60px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --radius-1: 4px;
+  --radius-2: 6px;
+  --radius-3: 8px;
+  --radius-4: 12px;
+  --radius-5: 16px;
+  --radius-full: 9999px;
+
+  --focus-outline: 2px solid var(--color-focus-ring);
+  --focus-outline-offset: 2px;
+}
+
+:root {
+  --ff-heading: var(--ff-orbitron);
+  --ff-fallback: Inter, -apple-system, system-ui, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --ff-body: var(--ff-space-grotesk, var(--ff-fallback));
+
+  --header-height: 48px;
+
+  --content-width: 1100px;
+  --content-padding: var(--space-4);
+  --content-width-with-padding: calc(
+    var(--content-width) + var(--content-padding) * 2
+  );
+}
+
+html,
+body {
+  color-scheme: dark;
+}
+
+html {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-family: var(--ff-body);
+}
+
+body {
+  color: inherit;
+  background-color: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+::selection {
+  background-color: #00ff9c45;
+}

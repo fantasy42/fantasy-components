@@ -1,0 +1,28 @@
+.main {
+  position: relative;
+  height: calc(100dvh - var(--header-height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-wrap: balance;
+  flex-direction: column;
+}
+
+.title {
+  font-size: var(--font-size-9);
+  line-height: var(--line-height-9);
+  letter-spacing: -0.025em;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+}
+
+.description {
+  font-size: var(--font-size-4);
+  line-height: var(--line-height-4);
+  letter-spacing: -0.0025em;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-weak);
+  margin-top: var(--space-1);
+  margin-bottom: var(--space-4);
+}

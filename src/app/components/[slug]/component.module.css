@@ -1,0 +1,23 @@
+.main {
+  padding: var(--space-6) 0;
+  max-width: 800px;
+  margin: auto;
+
+  @media (min-width: 650px) {
+    padding: var(--space-8) 0;
+  }
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-text-weak);
+  font-size: var(--font-size-2);
+  line-height: var(--line-height-2);
+  margin-bottom: var(--space-3);
+}
+
+.breadcrumbs [data-current] {
+  color: var(--color-text);
+}

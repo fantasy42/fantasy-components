@@ -1,0 +1,242 @@
+export const metadata = {
+  title: 'Exclusion Tabs',
+  description: 'Tabs with a seamless transition.'
+}
+
+# Exclusion Tabs
+
+<Description>
+Tabs with a seamless transition.
+</Description>
+
+
+<DemoContainer isRounded>
+  <ExclusionTabsDemo />
+</DemoContainer>
+
+## Code
+
+<Tabs>
+
+<TabsList>
+
+<Tab id='tabs'>exclusion-tabs.tsx</Tab>
+<Tab id='effect'>use-layout-effect.ts</Tab>
+<Tab id='css'>tabs.module.css</Tab>
+
+</TabsList>
+
+<TabPanel id='tabs'>
+```tsx
+// pnpm add motion
+
+'use client';
+
+import {
+  ArchiveIcon,
+  EnvelopeClosedIcon,
+  GearIcon,
+  PersonIcon,
+} from 'your-project-icons';
+import {animate, motion, useMotionTemplate, useMotionValue} from 'motion/react';
+import * as React from 'react';
+
+import {useLayoutEffect} from '~/lib/hooks/use-layout-effect';
+
+import s from './exclusion-tabs.module.css';
+
+const DURATION = 0.16;
+const TABS = [
+  {
+    name: 'Mail',
+    icon: <EnvelopeClosedIcon />,
+  },
+  {
+    name: 'Archive',
+    icon: <ArchiveIcon />,
+  },
+  {
+    name: 'Settings',
+    icon: <GearIcon />,
+  },
+  {
+    name: 'Profile',
+    icon: <PersonIcon />,
+  },
+];
+
+function getClipValues(element: HTMLButtonElement) {
+  const {offsetLeft, offsetWidth, offsetTop} = element;
+
+  const clipLeft = `${offsetLeft}px`;
+  const clipTop = `${offsetTop}px`;
+  const clipRight = `calc(100% - (${offsetLeft}px + ${offsetWidth}px))`;
+
+  return [clipLeft, clipRight, clipTop];
+}
+
+export function ExclusionTabs() {
+  const [isModified, setIsModified] = React.useState<boolean>(false);
+  const [selectedTab, setSelectedTab] = React.useState<string>(TABS[0].name);
+
+  const firstButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  const clipLeftValue = useMotionValue('0px');
+  const clipRightValue = useMotionValue('0px');
+  const clipTopValue = useMotionValue('0px');
+
+  const clipPathTemplate = useMotionTemplate`inset(${clipTopValue} ${clipRightValue} calc(100% - (${clipTopValue} + 32px)) ${clipLeftValue} round var(--radius-5))`;
+
+  function animateClipValues(newClipValues: string[]) {
+    for (const [newValue, motionValue] of [
+      [newClipValues[0], clipLeftValue],
+      [newClipValues[1], clipRightValue],
+      [newClipValues[2], clipTopValue],
+    ]) {
+      animate(motionValue, newValue, {
+        duration: DURATION,
+      });
+    }
+  }
+
+  // We style initial active tab with CSS so there's no flickering
+  // Because of that we need to set clip path values for the first tab from the start
+  // That way clip path transition will start from the active tab
+  useLayoutEffect(() => {
+    const firstButton = firstButtonRef.current;
+
+    if (firstButton) {
+      const [clipLeft, clipRight, clipTop] = getClipValues(firstButton);
+      clipLeftValue.jump(clipLeft);
+      clipRightValue.jump(clipRight);
+      clipTopValue.jump(clipTop);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div className={s.tabsWrapper} data-modified={isModified ? '' : undefined}>
+      <div className={s.tabs}>
+        {TABS.map((tab, index) => (
+          <button
+            key={tab.name}
+            type="button"
+            className={s.tab}
+            data-selected={selectedTab === tab.name}
+            ref={index === 0 ? firstButtonRef : undefined}
+            onClick={(event) => {
+              if (!isModified) {
+                setIsModified(true);
+              }
+              if (selectedTab === tab.name) {
+                return;
+              }
+
+              setSelectedTab(tab.name);
+              animateClipValues(getClipValues(event.currentTarget));
+            }}
+          >
+            {tab.icon}
+            {tab.name}
+          </button>
+        ))}
+      </div>
+      <motion.div
+        className={s.tabs}
+        // Add clip path style after first active tab change
+        style={{
+          clipPath: isModified ? clipPathTemplate : undefined,
+        }}
+        data-tabs-hidden=""
+        aria-hidden
+        inert
+      >
+        {TABS.map((tab) => (
+          <button key={tab.name} type="button" className={s.tab}>
+            {tab.icon}
+            {tab.name}
+          </button>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+```
+</TabPanel>
+
+<TabPanel id='effect'>
+```ts
+import * as React from 'react';
+
+export const useLayoutEffect =
+  typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+```
+</TabPanel>
+
+<TabPanel id='css'>
+```css
+.tabsWrapper {
+  --tab-color: var(--button-primary-color-rest);
+  --tab-bg-color: var(--button-primary-bgColor-rest);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &:where(:not([data-modified])) .tab:first-child {
+    color: var(--tab-color);
+    background-color: var(--tab-bg-color);
+  }
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &:where([data-tabs-hidden]) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: var(--tab-bg-color);
+    clip-path: inset(0 100% 0 0);
+    will-change: clip-path;
+
+    .tab {
+      color: var(--tab-color);
+    }
+  }
+}
+
+.tab {
+  height: var(--space-6);
+  font-size: var(--font-size-2);
+  line-height: var(--line-height-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-3);
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+  border-radius: var(--radius-5);
+  flex-shrink: 0;
+
+  &:where(:focus-visible) {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.tab svg {
+  flex-shrink: 0;
+}
+```
+</TabPanel>
+
+</Tabs>

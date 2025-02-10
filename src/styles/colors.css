@@ -1,0 +1,66 @@
+:root {
+  --color-black: oklch(0% 0 0);
+  --color-white: oklch(100% 0 0);
+
+  --color-gray-1: oklch(12.9% 0.0042 277.7);
+  --color-gray-2: oklch(20.7% 0.004 277.7);
+  --color-gray-3: oklch(25.1% 0.0055 277.7);
+  --color-gray-4: oklch(28.2% 0.0075 277.7);
+  --color-gray-5: oklch(31.3% 0.0089 277.7);
+  --color-gray-6: oklch(34.9% 0.01 277.7);
+  --color-gray-7: oklch(40.1% 0.0121 277.7);
+  --color-gray-8: oklch(49.2% 0.0157 277.7);
+  --color-gray-9: oklch(54% 0.0167 277.7);
+  --color-gray-10: oklch(58.6% 0.0165 277.7);
+  --color-gray-11: oklch(77% 0.0138 277.7);
+  --color-gray-12: oklch(94.9% 0.0026 277.7);
+
+  --color-green-1: oklch(12.9% 0.0164 161.2);
+  --color-green-2: oklch(20.5% 0.0209 161.2);
+  --color-green-3: oklch(26.7% 0.0495 161.2);
+  --color-green-4: oklch(31.4% 0.0687 161.2);
+  --color-green-5: oklch(36.1% 0.0774 161.2);
+  --color-green-6: oklch(41.1% 0.0831 161.2);
+  --color-green-7: oklch(46.8% 0.0921 161.2);
+  --color-green-8: oklch(53.4% 0.1073 161.2);
+  --color-green-9: oklch(86.9% 0.1894 161.2);
+  --color-green-10: oklch(83.8% 0.1894 161.2);
+  --color-green-11: oklch(78.4% 0.1894 161.2);
+  --color-green-12: oklch(90.3% 0.0943 161.2);
+
+  --color-green-contrast: #0d281b;
+  --color-green-surface: color(display-p3 0.102 0.1725 0.1255 / 0.5);
+  --color-green-indicator: oklch(86.9% 0.1894 161.2);
+  --color-green-track: oklch(86.9% 0.1894 161.2);
+
+  --color-accent: var(--color-green-9);
+  --color-background: oklch(12.91% 0.0026 286.03);
+  --color-focus-ring: var(--color-green-8);
+
+  --color-text: var(--color-gray-12);
+  --color-text-weak: var(--color-gray-11);
+
+  --color-border: var(--color-green-6);
+  --color-border-weak: var(--color-green-4);
+  --color-border-strong: var(--color-green-9);
+
+  --color-section-background: var(--color-green-1);
+
+  --color-link: var(--color-text);
+  --color-link-hover: var(--color-green-11);
+
+  --color-scrollbar: oklch(22.86% 0 0);
+
+  --button-primary-bgColor-rest: var(--color-accent);
+  --button-primary-bgColor-hover: var(--color-green-10);
+  --button-primary-bgColor-active: var(--color-green-11);
+  --button-primary-color-rest: var(--color-green-contrast);
+
+  --button-outline-bgColor-hover: var(--color-green-2);
+  --button-outline-bgColor-active: var(--color-green-3);
+  --button-outline-color-rest: var(--color-green-11);
+  --button-outline-borderColor-rest: var(--color-green-7);
+
+  --button-disasbled-bgColor: var(--color-gray-3);
+  --button-disabled-color: var(--color-gray-8);
+}

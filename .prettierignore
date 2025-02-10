@@ -1,0 +1,9 @@
+node_modules/
+build/
+.next/
+**/.git
+
+pnpm-lock.yaml
+
+next-env.d.ts
+*.md

@@ -1,0 +1,29 @@
+.pre {
+  overflow: auto;
+  height: 100%;
+  font-size: 13px;
+  line-height: var(--line-height-2);
+  padding: var(--space-3) var(--space-4);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar, rgb(235, 235, 235)) transparent;
+}
+
+.code {
+  display: contents;
+  font-family: var(--ff-mono);
+}
+
+.root {
+  position: relative;
+  background-color: var(--color-section-background);
+  box-shadow: 0 0 0 1px var(--color-border-weak);
+  border-radius: var(--radius-2);
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.copyButton {
+  position: absolute !important;
+  right: var(--space-2);
+  top: var(--space-2);
+}

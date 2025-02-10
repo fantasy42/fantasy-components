@@ -1,0 +1,17 @@
+.link[data-variant='primary'] {
+  color: var(--color-link);
+
+  &:where([data-hovered]) {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+    text-decoration-thickness: from-font;
+    text-underline-position: from-font;
+    text-decoration-style: wavy;
+  }
+}
+
+.link:where([data-focus-visible]) {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+  transition: none;
+}

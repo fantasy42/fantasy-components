@@ -1,0 +1,56 @@
+.root {
+  position: relative;
+  display: flex;
+  height: 58px;
+  width: auto;
+  padding: 0 8px;
+  background-color: var(--color-green-2);
+  border-radius: 9999px;
+}
+
+.dock {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.button {
+  --button-color: var(--button-primary-color-rest);
+  --button-bg-color: var(--button-primary-bgColor-rest);
+
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background-color: var(--button-bg-color);
+  color: var(--button-color);
+  border-radius: 9999px;
+
+  &:where(:focus-visible) {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.button svg {
+  width: 50%;
+  height: 50%;
+}
+
+.separator {
+  width: 1px;
+  height: 36px;
+  background-color: var(--color-border);
+  mask-image: linear-gradient(
+    0deg,
+    transparent,
+    rgb(255, 255, 255) 16px,
+    rgb(255, 255, 255) calc(100% - 16px),
+    transparent
+  );
+  border: 0;
+}

@@ -1,0 +1,15 @@
+.main {
+  position: relative;
+  margin: auto;
+  max-width: var(--content-width-with-padding);
+  padding: 0 var(--content-padding);
+  overflow: hidden;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  background-image: url(/noise.svg);
+}

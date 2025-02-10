@@ -1,0 +1,53 @@
+.base {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.button {
+  height: var(--space-6);
+  width: var(--space-6);
+  border-radius: var(--radius-2);
+
+  &:where([data-focus-visible]) {
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+  }
+
+  &:where([data-disabled]) {
+    background-color: var(--button-disasbled-bgColor);
+    color: var(--button-disabled-color);
+    cursor: not-allowed;
+  }
+}
+
+.button[data-variant='primary'] {
+  background-color: var(--button-primary-bgColor-rest);
+  color: var(--button-primary-color-rest);
+
+  &:where([data-hovered]) {
+    background-color: var(--button-primary-bgColor-hover);
+  }
+
+  &:where([data-pressed]) {
+    background-color: var(--button-primary-bgColor-active);
+    filter: brightness(0.92) saturate(1.1);
+  }
+}
+
+.button[data-variant='outline'] {
+  color: var(--button-outline-color-rest);
+  box-shadow: inset 0 0 0 1px var(--button-outline-borderColor-rest);
+
+  &:where([data-hovered]) {
+    background-color: var(--button-outline-bgColor-hover);
+  }
+
+  &:where([data-pressed]) {
+    background-color: var(--button-outline-bgColor-active);
+  }
+}
