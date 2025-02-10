@@ -5,6 +5,8 @@ import ariaLocalesPlugin from '@react-aria/optimize-locales-plugin';
 
 import {rehypeComponent} from './src/lib/rehype-component';
 
+import './src/lib/env';
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {

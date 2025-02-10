@@ -233,6 +233,7 @@ export default [
             refs: false,
             props: false,
             params: false,
+            env: false,
           },
         },
       ],
