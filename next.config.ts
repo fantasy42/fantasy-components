@@ -4,6 +4,7 @@ import createMDX from '@next/mdx';
 import ariaLocalesPlugin from '@react-aria/optimize-locales-plugin';
 
 import {rehypeComponent} from './src/lib/rehype-component';
+import {rehypeFileSource} from './src/lib/rehype-file-source';
 
 import './src/lib/env';
 
@@ -31,7 +32,7 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
-    rehypePlugins: [rehypeComponent],
+    rehypePlugins: [rehypeComponent, rehypeFileSource],
   },
 });
 

@@ -1,4 +1,4 @@
-import type {Node} from 'unist';
+import type {UnistNode, UnistTree} from './types';
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,8 +12,6 @@ export function rehypeComponent() {
         const folder = getAttribute(node, 'folder');
 
         if (typeof folder === 'string') {
-          node.children = [];
-
           for (const file of ['index.tsx', 'styles.module.css']) {
             const filePath = `${process.cwd()}/src/components/demos/${folder}/${file}`;
 
@@ -24,7 +22,7 @@ export function rehypeComponent() {
                 .replaceAll('~/components/libary', 'path-to-your-components');
               const syntax = file.split('.').pop()!;
 
-              node.children.push(
+              node.children?.push(
                 u('element', {
                   tagName: 'pre',
                   properties: {
@@ -33,17 +31,6 @@ export function rehypeComponent() {
                     syntax,
                     source,
                   },
-                  children: [
-                    u('element', {
-                      tagName: 'code',
-                      children: [
-                        {
-                          type: 'text',
-                          value: source,
-                        },
-                      ],
-                    }),
-                  ],
                 })
               );
             }
@@ -65,34 +52,4 @@ function fileExists(path: string) {
   } catch {
     return false;
   }
-}
-
-interface UnistNode extends Node {
-  type: string;
-  name?: string;
-  tagName?: string;
-  value?: string;
-  properties?: {
-    __rawString__?: string;
-    __className__?: string;
-    __event__?: string;
-    [key: string]: unknown;
-  } & NpmCommands;
-  attributes?: {
-    name: string;
-    value: unknown;
-    type?: string;
-  }[];
-  children?: UnistNode[];
-}
-
-interface UnistTree extends Node {
-  children: UnistNode[];
-}
-
-interface NpmCommands {
-  __npmCommand__?: string;
-  __yarnCommand__?: string;
-  __pnpmCommand__?: string;
-  __bunCommand__?: string;
 }

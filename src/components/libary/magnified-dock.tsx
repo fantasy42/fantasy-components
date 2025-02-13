@@ -1,3 +1,5 @@
+// pnpm add moiton
+
 'use client';
 
 import type {HTMLMotionProps, MotionValue} from 'motion/react';

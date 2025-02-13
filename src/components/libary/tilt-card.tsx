@@ -1,15 +1,19 @@
+// pnpm add motion
+
 'use client';
 
 import {HeartFilledIcon} from '@radix-ui/react-icons';
 import {motion, useMotionTemplate, useMotionValue} from 'motion/react';
-
-import {clamp} from '~/lib/utils';
 
 import s from './tilt-card.module.css';
 
 interface Offest {
   x: number;
   y: number;
+}
+
+function clamp(number_: number, start: number, end: number) {
+  return Math.min(Math.max(number_, start), end);
 }
 
 function getOffest(

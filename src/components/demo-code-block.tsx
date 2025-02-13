@@ -10,17 +10,14 @@ import s from './demo-code-block.module.css';
 export function DemoCodeBlock({children}: {children?: React.ReactNode}) {
   // eslint-disable-next-line react/no-children-to-array
   const snippets = React.Children.toArray(children)
-    .map((pre) => {
-      if (pre && typeof pre === 'object' && 'props' in pre) {
-        const preProps = pre.props as any;
+    .map((snippet) => {
+      if (snippet && typeof snippet === 'object' && 'props' in snippet) {
+        const snippetProps = snippet.props as any;
         return {
-          id: preProps.title as string,
-          title: preProps.title as string,
-          syntax: preProps.syntax as string,
-          // prettier-ignore
-          // eslint-disable-next-line react/no-children-only
-          children: React.Children.only(preProps.children).props?.children,
-          source: preProps.source as string,
+          id: snippetProps.title as string,
+          title: snippetProps.title as string,
+          syntax: snippetProps.syntax as BundledLanguage,
+          source: snippetProps.source as string,
         };
       }
     })
@@ -39,7 +36,7 @@ export function DemoCodeBlock({children}: {children?: React.ReactNode}) {
         {snippets.map((snippet) => (
           <Tabs.Panel key={snippet.title} id={snippet.title}>
             <CodeBlock.Pre className={s.demoPre}>
-              <CodeBlock.Code lang={snippet.syntax as BundledLanguage}>
+              <CodeBlock.Code lang={snippet.syntax}>
                 {snippet.source}
               </CodeBlock.Code>
             </CodeBlock.Pre>

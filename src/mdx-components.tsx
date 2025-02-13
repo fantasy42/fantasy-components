@@ -9,6 +9,7 @@ import {CodeBlockCopyButton} from '~/components/code-block-copy-button';
 import {DemoCodeBlock} from '~/components/demo-code-block';
 import {DemoContainer} from '~/components/demo-container';
 import * as demos from '~/components/demos';
+import {FileSource} from '~/components/file-source';
 import {Link} from '~/components/primitives/link';
 import * as Tabs from '~/components/primitives/tabs';
 import s from '~/styles/components.module.css';
@@ -55,6 +56,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     TabsList: Tabs.List,
     Tab: Tabs.Tab,
     TabPanel: Tabs.Panel,
+    FileSource,
     ...demos,
     ...components,
   };
