@@ -10,10 +10,10 @@ export function rehypeFileSource() {
     visit(tree, (node: UnistNode) => {
       if (node.name === 'FileSource') {
         const nodePath = getAttribute(node, 'path');
-        const nodeSyntax = getAttribute(node, 'syntax');
 
-        if (typeof nodePath === 'string' && typeof nodeSyntax === 'string') {
+        if (typeof nodePath === 'string') {
           const filePath = `${process.cwd()}/src${nodePath}`;
+          const syntax = nodePath.split('/').at(-1)?.split('.').pop();
 
           if (fileExists(filePath)) {
             const source = fs
@@ -29,7 +29,7 @@ export function rehypeFileSource() {
               u('element', {
                 tagName: 'pre',
                 properties: {
-                  syntax: nodeSyntax,
+                  syntax,
                   source,
                 },
               })
