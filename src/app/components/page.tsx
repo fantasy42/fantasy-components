@@ -25,6 +25,13 @@ export default function Page() {
             href="/components/scanner"
             name="Scanner"
           />
+          <VideoItem
+            videoSrc="/videos/decrypt-text.mp4"
+            fallbackSrc={base64EncodeImage('/fallbacks/decrypt-text.jpg')}
+            aspectRatio={720 / 250}
+            href="/components/decrypt-text"
+            name="Decrypt Text Reveal"
+          />
         </div>
         <div className={s.gridColumn}>
           <VideoItem

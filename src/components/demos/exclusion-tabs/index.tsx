@@ -1,5 +1,3 @@
-'use client';
-
 import {ExclusionTabs} from '~/components/libary/exclusion-tabs';
 
 function ExclusionTabsDemo() {
