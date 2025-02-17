@@ -1,5 +1,3 @@
-'use client';
-
 import {TiltCard} from '~/components/libary/tilt-card';
 
 function TiltCardDemo() {

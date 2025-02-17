@@ -1,0 +1,9 @@
+.text {
+  font-family: var(--ff-heading);
+  font-size: var(--font-size-5);
+  line-height: var(--line-height-5);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  text-align: center;
+  text-wrap: pretty;
+}
