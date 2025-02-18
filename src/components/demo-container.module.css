@@ -1,9 +1,10 @@
 .root {
+  position: relative;
   height: 320px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: inset 0 0 0 1px var(--color-border-weak);
+  justify-content: var(--justify-content, center);
+  box-shadow: 0 0 0 1px var(--color-border-weak);
   background-color: var(--color-section-background);
   padding: var(--space-6);
   overflow: auto;
