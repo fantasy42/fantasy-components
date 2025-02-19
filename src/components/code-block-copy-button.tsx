@@ -25,49 +25,56 @@ export function CodeBlockCopyButton(props: CodeBlockCopyButtonProps) {
   const {copied, copy} = useClipboard();
 
   return (
-    <IconButton
-      className={clsx(s.copyButton, className)}
-      aria-label="Copy code to clipboard"
-      {...copyButtonProps}
-      onPress={React.useCallback(
-        (event: PressEvent) => {
-          const copyValue = event.target
-            .closest('[data-code-block-root]')
-            ?.querySelector('code')
-            ?.textContent; // prettier-ignore
+    <>
+      <IconButton
+        className={clsx(s.copyButton, className)}
+        aria-label="Copy code to clipboard"
+        {...copyButtonProps}
+        onPress={React.useCallback(
+          (event: PressEvent) => {
+            const copyValue = event.target
+          .closest('[data-code-block-root]')
+          ?.querySelector('code')
+          ?.textContent; // prettier-ignore
 
-          if (copyValue) {
-            copy(copyValue);
-          }
-        },
-        [copy]
+            if (copyValue) {
+              copy(copyValue);
+            }
+          },
+          [copy]
+        )}
+      >
+        <MotionConfig transition={{duration: 0.11, ease: 'easeOut'}}>
+          <AnimatePresence mode="wait" initial={false}>
+            {copied ? (
+              <motion.span
+                animate="visible"
+                exit="hidden"
+                initial="hidden"
+                key="check"
+                variants={variants}
+              >
+                <CheckIcon width={20} height={20} aria-hidden />
+              </motion.span>
+            ) : (
+              <motion.span
+                animate="visible"
+                exit="hidden"
+                initial="hidden"
+                key="copy"
+                variants={variants}
+              >
+                <CopyIcon width={16} height={16} aria-hidden />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </MotionConfig>
+      </IconButton>
+      {copied && (
+        <div role="log" aria-live="polite" className="sr-only">
+          Copied code to clipboard
+        </div>
       )}
-    >
-      <MotionConfig transition={{duration: 0.11, ease: 'easeOut'}}>
-        <AnimatePresence mode="wait" initial={false}>
-          {copied ? (
-            <motion.span
-              animate="visible"
-              exit="hidden"
-              initial="hidden"
-              key="check"
-              variants={variants}
-            >
-              <CheckIcon width={20} height={20} aria-hidden />
-            </motion.span>
-          ) : (
-            <motion.span
-              animate="visible"
-              exit="hidden"
-              initial="hidden"
-              key="copy"
-              variants={variants}
-            >
-              <CopyIcon width={16} height={16} aria-hidden />
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </MotionConfig>
-    </IconButton>
+    </>
   );
 }
