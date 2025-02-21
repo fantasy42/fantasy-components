@@ -9,33 +9,34 @@ export const metadata = {
 Tabs with a seamless transition.
 </Description>
 
-
 <DemoContainer isRounded>
   <ExclusionTabsDemo />
 </DemoContainer>
 
-## Code
+## Installation
+
+### 1. Install the following dependencies
+
+<CodeBlockCommand dependencies='motion' />
+
+### 2. Copy and paste the following code into your project, update the import paths to match your project setup
 
 <Tabs>
+  <TabsList>
+    <Tab id='exclusion-tabs'>exclusion-tabs.tsx</Tab>
+    <Tab id='use-layout-effect'>use-layout-effect.ts</Tab>
+    <Tab id='css'>exclusion-tabs.module.css</Tab>
+  </TabsList>
 
-<TabsList>
+  <TabPanel id='exclusion-tabs'>
+    <FileSource path='/components/libary/exclusion-tabs.tsx' />
+  </TabPanel>
 
-<Tab id='exclusion-tabs'>exclusion-tabs.tsx</Tab>
-<Tab id='use-layout-effect'>use-layout-effect.ts</Tab>
-<Tab id='css'>exclusion-tabs.module.css</Tab>
+  <TabPanel id='use-layout-effect'>
+    <FileSource path='/lib/hooks/use-layout-effect.ts' />
+  </TabPanel>
 
-</TabsList>
-
-<TabPanel id='exclusion-tabs'>
-  <FileSource path='/components/libary/exclusion-tabs.tsx' />
-</TabPanel>
-
-<TabPanel id='use-layout-effect'>
-  <FileSource path='/lib/hooks/use-layout-effect.ts' />
-</TabPanel>
-
-<TabPanel id='css'>
-  <FileSource path='/components/libary/exclusion-tabs.module.css' />
-</TabPanel>
-
+  <TabPanel id='css'>
+    <FileSource path='/components/libary/exclusion-tabs.module.css' />
+  </TabPanel>
 </Tabs>

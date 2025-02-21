@@ -1,5 +1,3 @@
-// pnpm add motion
-
 'use client';
 
 import {HeartFilledIcon} from '@radix-ui/react-icons';

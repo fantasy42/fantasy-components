@@ -17,28 +17,30 @@ Recreation of the magnification effect from the Dock on the Mac.
 
 <DemoCodeBlock folder='magnified-dock' />
 
-## Code
+## Installation
+
+### 1. Install the following dependencies
+
+<CodeBlockCommand dependencies='motion' />
+
+### 2. Copy and paste the following code into your project, update the import paths to match your project setup
 
 <Tabs>
+  <TabsList>
+    <Tab id='magnified-dock'>magnified-dock.tsx</Tab>
+    <Tab id='compose-event-handlers'>compose-event-handlers.ts</Tab>
+    <Tab id='use-composed-refs'>use-composed-refs.ts</Tab>
+  </TabsList>
 
-<TabsList>
-  <Tab id='magnified-dock'>magnified-dock.tsx</Tab>
-  <Tab id='compose-event-handlers'>compose-event-handlers.ts</Tab>
-  <Tab id='use-composed-refs'>use-composed-refs.ts</Tab>
-</TabsList>
+  <TabPanel id='magnified-dock'>
+    <FileSource path='/components/libary/magnified-dock.tsx' />
+  </TabPanel>
 
-<TabPanel id='magnified-dock'>
-  <FileSource path='/components/libary/magnified-dock.tsx' />
-</TabPanel>
+  <TabPanel id='compose-event-handlers'>
+    <FileSource path='/lib/compose-event-handlers.ts' />
+  </TabPanel>
 
-<TabPanel id='compose-event-handlers'>
-  <FileSource path='/lib/compose-event-handlers.ts' />
-</TabPanel>
-
-<TabPanel id='use-composed-refs'>
-  <FileSource path='/lib/hooks/use-composed-refs.ts' />
-</TabPanel>
-
+  <TabPanel id='use-composed-refs'>
+    <FileSource path='/lib/hooks/use-composed-refs.ts' />
+  </TabPanel>
 </Tabs>
-
-
