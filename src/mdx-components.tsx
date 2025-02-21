@@ -5,6 +5,7 @@ import {Link1Icon} from '@radix-ui/react-icons';
 import * as React from 'react';
 
 import * as CodeBlock from '~/components/code-block';
+import {CodeBlockCommand} from '~/components/code-block-command';
 import {CodeBlockCopyButton} from '~/components/code-block-copy-button';
 import {DemoCodeBlock} from '~/components/demo-code-block';
 import {DemoContainer} from '~/components/demo-container';
@@ -57,6 +58,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Tab: Tabs.Tab,
     TabPanel: Tabs.Panel,
     FileSource,
+    CodeBlockCommand,
     ...demos,
     ...components,
   };
