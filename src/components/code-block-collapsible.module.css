@@ -1,0 +1,24 @@
+.pre {
+  padding-bottom: var(--space-12);
+  max-height: 650px;
+
+  &:where([data-expanded='false']) {
+    max-height: 250px;
+    overflow: hidden;
+  }
+}
+
+.triggerWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--space-12);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: var(--space-4);
+  border-radius: inherit;
+  overflow: hidden;
+  background: linear-gradient(0deg, var(--color-green-2) 0, transparent 100%);
+}

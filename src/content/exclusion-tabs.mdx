@@ -19,9 +19,9 @@ Tabs with a seamless transition.
 
 <CodeBlockCommand dependencies='motion' />
 
-### 2. Copy and paste the following code into your project, update the import paths to match your project setup
+### 2. Copy and paste the following code into your project
 
-<Tabs>
+<CollapsibleTabs defaultSelectedKey='exclusion-tabs'>
   <TabsList>
     <Tab id='exclusion-tabs'>exclusion-tabs.tsx</Tab>
     <Tab id='use-layout-effect'>use-layout-effect.ts</Tab>
@@ -29,14 +29,22 @@ Tabs with a seamless transition.
   </TabsList>
 
   <TabPanel id='exclusion-tabs'>
-    <FileSource path='/components/libary/exclusion-tabs.tsx' />
+    <CodeBlockCollapsible>
+      <FileSource path='/components/libary/exclusion-tabs.tsx' />
+    </CodeBlockCollapsible>
   </TabPanel>
 
   <TabPanel id='use-layout-effect'>
-    <FileSource path='/lib/hooks/use-layout-effect.ts' />
+    <CodeBlockCollapsible>
+      <FileSource path='/lib/hooks/use-layout-effect.ts' />
+    </CodeBlockCollapsible>
   </TabPanel>
 
   <TabPanel id='css'>
-    <FileSource path='/components/libary/exclusion-tabs.module.css' />
+    <CodeBlockCollapsible>
+      <FileSource path='/components/libary/exclusion-tabs.module.css' />
+    </CodeBlockCollapsible>
   </TabPanel>
-</Tabs>
+</CollapsibleTabs>
+
+### 3. Update the import paths to match your project setup
