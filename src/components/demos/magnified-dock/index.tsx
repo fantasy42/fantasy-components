@@ -63,7 +63,7 @@ function MagnifiedDockDemo() {
         <MagnifiedDock.Separator className={styles.separator} />
 
         <MagnifiedDock.ExternalLink
-          href="https://github.com/fantasy42/components"
+          href="https://github.com/fantasy42/fantasy-components"
           className={styles.button}
           aria-label="Github"
         >

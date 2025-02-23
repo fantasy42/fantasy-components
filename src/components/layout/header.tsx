@@ -19,7 +19,7 @@ export function Header() {
         </div>
         <div className={s.links}>
           <Link
-            href="https://github.com/fantasy42/components"
+            href="https://github.com/fantasy42/fantasy-components"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="GitHub"
