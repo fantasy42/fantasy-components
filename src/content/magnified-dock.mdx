@@ -23,9 +23,9 @@ Recreation of the magnification effect from the Dock on the Mac.
 
 <CodeBlockCommand dependencies='motion' />
 
-### 2. Copy and paste the following code into your project, update the import paths to match your project setup
+### 2. Copy and paste the following code into your project
 
-<Tabs>
+<CollapsibleTabs defaultSelectedKey='magnified-dock'>
   <TabsList>
     <Tab id='magnified-dock'>magnified-dock.tsx</Tab>
     <Tab id='compose-event-handlers'>compose-event-handlers.ts</Tab>
@@ -33,14 +33,22 @@ Recreation of the magnification effect from the Dock on the Mac.
   </TabsList>
 
   <TabPanel id='magnified-dock'>
-    <FileSource path='/components/libary/magnified-dock.tsx' />
+    <CodeBlockCollapsible>
+      <FileSource path='/components/libary/magnified-dock.tsx' />
+    </CodeBlockCollapsible>
   </TabPanel>
 
   <TabPanel id='compose-event-handlers'>
-    <FileSource path='/lib/compose-event-handlers.ts' />
+    <CodeBlockCollapsible>
+      <FileSource path='/lib/compose-event-handlers.ts' />
+    </CodeBlockCollapsible>
   </TabPanel>
 
   <TabPanel id='use-composed-refs'>
-    <FileSource path='/lib/hooks/use-composed-refs.ts' />
+    <CodeBlockCollapsible>
+      <FileSource path='/lib/hooks/use-composed-refs.ts' />
+    </CodeBlockCollapsible>
   </TabPanel>
-</Tabs>
+</CollapsibleTabs>
+
+### 3. Update the import paths to match your project setup
