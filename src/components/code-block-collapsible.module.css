@@ -9,9 +9,11 @@
 }
 
 .triggerWrapper {
+  --scrollbar-width: 10px;
+
   position: absolute;
-  left: 0;
-  right: 0;
+  left: var(--scrollbar-width);
+  right: var(--scrollbar-width);
   bottom: 0;
   height: var(--space-12);
   display: flex;
@@ -19,6 +21,17 @@
   justify-content: center;
   padding-bottom: var(--space-4);
   border-radius: inherit;
-  overflow: hidden;
-  background: linear-gradient(0deg, var(--color-green-2) 0, transparent 100%);
+  isolation: isolate;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0 calc(0px - var(--scrollbar-width));
+    background: linear-gradient(0deg, var(--color-green-2) 0, transparent 100%);
+    border-radius: inherit;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+  }
 }
