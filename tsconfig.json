@@ -18,6 +18,7 @@
     "paths": {
       "~/app/*": ["app/*"],
       "~/components/*": ["components/*"],
+      "~/context/*": ["context/*"],
       "~/lib/*": ["lib/*"],
       "~/utils/*": ["lib/utils/*"],
       "~/hooks/*": ["lib/hooks/*"],

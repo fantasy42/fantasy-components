@@ -1,5 +1,7 @@
 import type {Node} from 'unist';
 
+import type {PackageManagers} from './constants';
+
 export interface UnistNode extends Node {
   type: string;
   name?: string;
@@ -29,3 +31,5 @@ export interface NpmCommands {
   __pnpmCommand__?: string;
   __bunCommand__?: string;
 }
+
+export type PackageManagersType = (typeof PackageManagers)[number];
