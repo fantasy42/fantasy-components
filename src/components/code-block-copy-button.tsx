@@ -4,11 +4,11 @@ import type {PressEvent} from 'react-aria-components';
 
 import {CheckIcon, CopyIcon} from '@radix-ui/react-icons';
 import {clsx} from 'clsx';
+import {useClipboard} from 'foxact/use-clipboard';
 import {AnimatePresence, motion, MotionConfig} from 'motion/react';
 import * as React from 'react';
 
 import {IconButton} from '~/components/primitives/icon-button';
-import {useClipboard} from '~/lib/hooks/use-clipboard';
 
 import s from './code-block.module.css';
 
