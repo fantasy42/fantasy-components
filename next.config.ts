@@ -13,11 +13,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  devIndicators: {
-    buildActivity: true,
-    buildActivityPosition: 'bottom-right',
-    appIsrStatus: false,
-  },
+  devIndicators: false,
   pageExtensions: ['mdx', 'tsx'],
   experimental: {
     optimizePackageImports: ['react-aria-components'],
