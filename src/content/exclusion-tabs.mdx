@@ -21,30 +21,21 @@ Tabs with a seamless transition.
 
 ### 2. Copy and paste the following code into your project
 
-<CollapsibleTabs defaultSelectedKey='exclusion-tabs'>
-  <TabsList>
-    <Tab id='exclusion-tabs'>exclusion-tabs.tsx</Tab>
-    <Tab id='use-layout-effect'>use-layout-effect.ts</Tab>
-    <Tab id='css'>exclusion-tabs.module.css</Tab>
-  </TabsList>
+<CollapsibleCodeTabsRoot tabList={['exclusion-tabs.tsx', 'use-layout-effect.ts', 'exclusion-tabs.module.css']}>
 
-  <TabPanel id='exclusion-tabs'>
-    <CodeBlockCollapsible>
-      <FileSource path='/components/libary/exclusion-tabs.tsx' />
-    </CodeBlockCollapsible>
-  </TabPanel>
+  <CollapsibleCodeTabsPanel id='exclusion-tabs.tsx'>
+    <FileSource path='/components/libary/exclusion-tabs.tsx' />
+  </CollapsibleCodeTabsPanel>
 
-  <TabPanel id='use-layout-effect'>
-    <CodeBlockCollapsible>
-      <FileSource path='/lib/hooks/use-layout-effect.ts' />
-    </CodeBlockCollapsible>
-  </TabPanel>
+  <CollapsibleCodeTabsPanel id='use-layout-effect.ts'>
+    <FileSource path='/lib/hooks/use-layout-effect.ts' />
+  </CollapsibleCodeTabsPanel>
 
-  <TabPanel id='css'>
-    <CodeBlockCollapsible>
-      <FileSource path='/components/libary/exclusion-tabs.module.css' />
-    </CodeBlockCollapsible>
-  </TabPanel>
-</CollapsibleTabs>
+  <CollapsibleCodeTabsPanel id='exclusion-tabs.module.css'>
+    <FileSource path='/components/libary/exclusion-tabs.module.css' />
+  </CollapsibleCodeTabsPanel>
+
+</CollapsibleCodeTabsRoot>
+
 
 ### 3. Update the import paths to match your project setup

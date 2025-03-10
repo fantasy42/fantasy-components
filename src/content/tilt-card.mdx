@@ -21,23 +21,16 @@ A customizable component with tilt hover effect.
 
 ### 2. Copy and paste the following code into your project
 
-<CollapsibleTabs defaultSelectedKey='tilt-card'>
-  <TabsList>
-    <Tab id='tilt-card'>tilt-card.tsx</Tab>
-    <Tab id='css'>tilt-card.module.css</Tab>
-  </TabsList>
+<CollapsibleCodeTabsRoot tabList={['tilt-card.tsx', 'tilt-card.module.css']}>
 
-  <TabPanel id='tilt-card'>
-    <CodeBlockCollapsible>
-      <FileSource path='/components/libary/tilt-card.tsx' />
-    </CodeBlockCollapsible>
-  </TabPanel>
+  <CollapsibleCodeTabsPanel id='tilt-card.tsx'>
+    <FileSource path='/components/libary/tilt-card.tsx' />
+  </CollapsibleCodeTabsPanel>
 
-  <TabPanel id='css'>
-    <CodeBlockCollapsible>
-      <FileSource path='/components/libary/tilt-card.module.css' />
-    </CodeBlockCollapsible>
-  </TabPanel>
-</CollapsibleTabs>
+  <CollapsibleCodeTabsPanel id='tilt-card.module.css'>
+    <FileSource path='/components/libary/tilt-card.module.css' />
+  </CollapsibleCodeTabsPanel>
+
+</CollapsibleCodeTabsRoot>
 
 ### 3. Update the import paths to match your project setup

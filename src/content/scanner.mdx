@@ -21,23 +21,16 @@ Scanner or Vertical Comparsion Slider component made with clip-path.
 
 ### 2. Copy and paste the following code into your project
 
-<CollapsibleTabs defaultSelectedKey='scanner'>
-  <TabsList>
-    <Tab id='scanner'>scanner.tsx</Tab>
-    <Tab id='css'>scanner.module.css</Tab>
-  </TabsList>
+<CollapsibleCodeTabsRoot tabList={['scanner.tsx', 'scanner.module.css']}>
 
-  <TabPanel id='scanner'>
-    <CodeBlockCollapsible>
-      <FileSource path='/components/libary/scanner.tsx' />
-    </CodeBlockCollapsible>
-  </TabPanel>
+  <CollapsibleCodeTabsPanel id='scanner.tsx'>
+    <FileSource path='/components/libary/scanner.tsx' />
+  </CollapsibleCodeTabsPanel>
 
-  <TabPanel id='css'>
-    <CodeBlockCollapsible>
-      <FileSource path='/components/libary/scanner.module.css' />
-    </CodeBlockCollapsible>
-  </TabPanel>
-</CollapsibleTabs>
+  <CollapsibleCodeTabsPanel id='scanner.module.css'>
+    <FileSource path='/components/libary/scanner.module.css' />
+  </CollapsibleCodeTabsPanel>
+
+</CollapsibleCodeTabsRoot>
 
 ### 3. Update the import paths to match your project setup
