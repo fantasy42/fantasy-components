@@ -25,30 +25,20 @@ Recreation of the magnification effect from the Dock on the Mac.
 
 ### 2. Copy and paste the following code into your project
 
-<CollapsibleTabs defaultSelectedKey='magnified-dock'>
-  <TabsList>
-    <Tab id='magnified-dock'>magnified-dock.tsx</Tab>
-    <Tab id='compose-event-handlers'>compose-event-handlers.ts</Tab>
-    <Tab id='use-composed-refs'>use-composed-refs.ts</Tab>
-  </TabsList>
+<CollapsibleCodeTabsRoot tabList={['magnified-dock.tsx', 'compose-event-handlers.ts', 'use-composed-refs.ts']}>
 
-  <TabPanel id='magnified-dock'>
-    <CodeBlockCollapsible>
-      <FileSource path='/components/libary/magnified-dock.tsx' />
-    </CodeBlockCollapsible>
-  </TabPanel>
+  <CollapsibleCodeTabsPanel id='magnified-dock.tsx'>
+    <FileSource path='/components/libary/magnified-dock.tsx' />
+  </CollapsibleCodeTabsPanel>
 
-  <TabPanel id='compose-event-handlers'>
-    <CodeBlockCollapsible>
-      <FileSource path='/lib/compose-event-handlers.ts' />
-    </CodeBlockCollapsible>
-  </TabPanel>
+  <CollapsibleCodeTabsPanel id='compose-event-handlers.ts'>
+    <FileSource path='/lib/compose-event-handlers.ts' />
+  </CollapsibleCodeTabsPanel>
 
-  <TabPanel id='use-composed-refs'>
-    <CodeBlockCollapsible>
-      <FileSource path='/lib/hooks/use-composed-refs.ts' />
-    </CodeBlockCollapsible>
-  </TabPanel>
-</CollapsibleTabs>
+  <CollapsibleCodeTabsPanel id='use-composed-refs.ts'>
+    <FileSource path='/lib/hooks/use-composed-refs.ts' />
+  </CollapsibleCodeTabsPanel>
+
+</CollapsibleCodeTabsRoot>
 
 ### 3. Update the import paths to match your project setup

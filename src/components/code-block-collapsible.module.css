@@ -2,7 +2,7 @@
   padding-bottom: var(--space-12);
   max-height: 650px;
 
-  &:where([data-expanded='false']) {
+  &:where([data-state='collapsed']) {
     max-height: 250px;
     overflow: hidden;
   }

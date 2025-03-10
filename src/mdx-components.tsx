@@ -8,7 +8,7 @@ import * as CodeBlock from '~/components/code-block';
 import {CodeBlockCollapsible} from '~/components/code-block-collapsible';
 import {CodeBlockCommand} from '~/components/code-block-command';
 import {CodeBlockCopyButton} from '~/components/code-block-copy-button';
-import {CollapsibleTabs} from '~/components/collapsible-tabs';
+import * as CollapsibleCodeTabs from '~/components/collapsible-code-tabs';
 import {DemoCodeBlock} from '~/components/demo-code-block';
 import {DemoContainer} from '~/components/demo-container';
 import * as demos from '~/components/demos';
@@ -60,8 +60,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Tab: Tabs.Tab,
     TabPanel: Tabs.Panel,
     FileSource,
+    CollapsibleCodeTabsRoot: CollapsibleCodeTabs.Root,
+    CollapsibleCodeTabsPanel: CollapsibleCodeTabs.Panel,
     CodeBlockCommand,
-    CollapsibleTabs,
     CodeBlockCollapsible,
     ...demos,
     ...components,
