@@ -53,6 +53,44 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       }
       return <CodeBlock.Code lang={lang as BundledLanguage} {...props} />;
     },
+    a: ({children, href, ...linkProps}: any) => {
+      if (href?.startsWith('/') || href?.startsWith('#')) {
+        return (
+          <Link className={s.link} href={href} {...linkProps}>
+            {children}
+          </Link>
+        );
+      }
+
+      return (
+        <Link
+          className={s.link}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          {...linkProps}
+        >
+          {children}
+
+          <span className={s.linkIconWrapper}>
+            <svg
+              strokeLinejoin="round"
+              viewBox="0 0 16 16"
+              height={16}
+              width={16}
+              style={{color: 'currentcolor'}}
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M6.75011 4H6.00011V5.5H6.75011H9.43945L5.46978 9.46967L4.93945 10L6.00011 11.0607L6.53044 10.5303L10.499 6.56182V9.25V10H11.999V9.25V5C11.999 4.44772 11.5512 4 10.999 4H6.75011Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </Link>
+      );
+    },
     DemoCodeBlock,
     DemoContainer,
     Tabs: Tabs.Root,

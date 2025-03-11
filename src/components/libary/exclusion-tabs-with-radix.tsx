@@ -7,6 +7,7 @@ import {
   PersonIcon,
 } from '@radix-ui/react-icons';
 import {animate, motion, useMotionTemplate, useMotionValue} from 'motion/react';
+import {Tabs} from 'radix-ui';
 import * as React from 'react';
 
 import {useLayoutEffect} from '~/lib/hooks/use-layout-effect';
@@ -48,24 +49,13 @@ export function ExclusionTabs() {
   const [selectedTab, setSelectedTab] = React.useState<string>(TABS[0].name);
 
   const firstTabRef = React.useRef<HTMLButtonElement>(null);
+  const activeTabRef = React.useRef<HTMLButtonElement>(null);
 
   const clipLeftValue = useMotionValue('0px');
   const clipRightValue = useMotionValue('0px');
   const clipTopValue = useMotionValue('0px');
 
   const clipPathTemplate = useMotionTemplate`inset(${clipTopValue} ${clipRightValue} calc(100% - (${clipTopValue} + 32px)) ${clipLeftValue} round var(--radius-5))`;
-
-  function animateClipValues(newClipValues: string[]) {
-    for (const [newValue, motionValue] of [
-      [newClipValues[0], clipLeftValue],
-      [newClipValues[1], clipRightValue],
-      [newClipValues[2], clipTopValue],
-    ]) {
-      animate(motionValue, newValue, {
-        duration: DURATION,
-      });
-    }
-  }
 
   // We style initial active tab with CSS so there's no flickering
   // Because of that we need to set clip path values for the first tab from the start
@@ -83,33 +73,52 @@ export function ExclusionTabs() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <div className={s.tabsWrapper} data-modified={isModified ? '' : undefined}>
-      <div className={s.tabs}>
-        {TABS.map((tab, index) => (
-          <button
-            key={tab.name}
-            type="button"
-            className={s.tab}
-            data-selected={selectedTab === tab.name}
-            ref={index === 0 ? firstTabRef : undefined}
-            onClick={(event) => {
-              if (!isModified) {
-                setIsModified(true);
-              }
-              if (selectedTab === tab.name) {
-                return;
-              }
+  React.useEffect(() => {
+    const activeTab = activeTabRef.current;
 
-              setSelectedTab(tab.name);
-              animateClipValues(getClipValues(event.currentTarget));
-            }}
+    if (activeTab && isModified) {
+      const newClipValues = getClipValues(activeTab);
+
+      animate(clipLeftValue, newClipValues[0], {
+        duration: DURATION,
+      });
+      animate(clipRightValue, newClipValues[1], {
+        duration: DURATION,
+      });
+      animate(clipTopValue, newClipValues[2], {
+        duration: DURATION,
+      });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedTab, isModified]);
+
+  return (
+    <Tabs.Root
+      className={s.tabsWrapper}
+      data-modified={isModified ? '' : undefined}
+      value={selectedTab}
+      onValueChange={(value) => {
+        if (!isModified) {
+          setIsModified(true);
+        }
+
+        setSelectedTab(value);
+      }}
+    >
+      <Tabs.List className={s.tabs}>
+        {TABS.map((tab) => (
+          <Tabs.Trigger
+            key={tab.name}
+            value={tab.name}
+            className={s.tab}
+            ref={selectedTab === tab.name ? activeTabRef : undefined}
           >
             {tab.icon}
             {tab.name}
-          </button>
+          </Tabs.Trigger>
         ))}
-      </div>
+      </Tabs.List>
       <motion.div
         className={s.tabs}
         // Add clip path style after first active tab change
@@ -120,13 +129,18 @@ export function ExclusionTabs() {
         aria-hidden
         inert
       >
-        {TABS.map((tab) => (
-          <button key={tab.name} type="button" className={s.tab}>
+        {TABS.map((tab, index) => (
+          <button
+            key={tab.name}
+            type="button"
+            className={s.tab}
+            ref={index === 0 ? firstTabRef : undefined}
+          >
             {tab.icon}
             {tab.name}
           </button>
         ))}
       </motion.div>
-    </div>
+    </Tabs.Root>
   );
 }
