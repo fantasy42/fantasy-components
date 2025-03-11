@@ -92,3 +92,17 @@
     --justify-content: flex-start;
   }
 }
+
+.link {
+  color: var(--color-accent);
+
+  &:where([data-hovered]) {
+    text-decoration: underline;
+    text-decoration-thickness: from-font;
+    text-underline-position: from-font;
+  }
+}
+
+.linkIconWrapper {
+  display: inline-flex;
+}
