@@ -41,7 +41,7 @@ function getClipValues(element: HTMLButtonElement) {
   const clipTop = `${offsetTop}px`;
   const clipRight = `calc(100% - (${offsetLeft}px + ${offsetWidth}px))`;
 
-  return [clipLeft, clipRight, clipTop];
+  return {left: clipLeft, top: clipTop, right: clipRight};
 }
 
 export function ExclusionTabs() {
@@ -64,10 +64,11 @@ export function ExclusionTabs() {
     const firstTab = firstTabRef.current;
 
     if (firstTab) {
-      const [clipLeft, clipRight, clipTop] = getClipValues(firstTab);
-      clipLeftValue.jump(clipLeft);
-      clipRightValue.jump(clipRight);
-      clipTopValue.jump(clipTop);
+      const {left, right, top} = getClipValues(firstTab);
+
+      clipLeftValue.jump(left);
+      clipRightValue.jump(right);
+      clipTopValue.jump(top);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,13 +80,13 @@ export function ExclusionTabs() {
     if (activeTab && isModified) {
       const newClipValues = getClipValues(activeTab);
 
-      animate(clipLeftValue, newClipValues[0], {
+      animate(clipLeftValue, newClipValues.left, {
         duration: DURATION,
       });
-      animate(clipRightValue, newClipValues[1], {
+      animate(clipRightValue, newClipValues.right, {
         duration: DURATION,
       });
-      animate(clipTopValue, newClipValues[2], {
+      animate(clipTopValue, newClipValues.top, {
         duration: DURATION,
       });
     }

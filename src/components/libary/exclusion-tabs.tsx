@@ -40,7 +40,7 @@ function getClipValues(element: HTMLButtonElement) {
   const clipTop = `${offsetTop}px`;
   const clipRight = `calc(100% - (${offsetLeft}px + ${offsetWidth}px))`;
 
-  return [clipLeft, clipRight, clipTop];
+  return {left: clipLeft, top: clipTop, right: clipRight};
 }
 
 export function ExclusionTabs() {
@@ -55,18 +55,6 @@ export function ExclusionTabs() {
 
   const clipPathTemplate = useMotionTemplate`inset(${clipTopValue} ${clipRightValue} calc(100% - (${clipTopValue} + 32px)) ${clipLeftValue} round var(--radius-5))`;
 
-  function animateClipValues(newClipValues: string[]) {
-    for (const [newValue, motionValue] of [
-      [newClipValues[0], clipLeftValue],
-      [newClipValues[1], clipRightValue],
-      [newClipValues[2], clipTopValue],
-    ]) {
-      animate(motionValue, newValue, {
-        duration: DURATION,
-      });
-    }
-  }
-
   // We style initial active tab with CSS so there's no flickering
   // Because of that we need to set clip path values for the first tab from the start
   // That way clip path transition will start from the active tab
@@ -74,10 +62,11 @@ export function ExclusionTabs() {
     const firstTab = firstTabRef.current;
 
     if (firstTab) {
-      const [clipLeft, clipRight, clipTop] = getClipValues(firstTab);
-      clipLeftValue.jump(clipLeft);
-      clipRightValue.jump(clipRight);
-      clipTopValue.jump(clipTop);
+      const {left, right, top} = getClipValues(firstTab);
+
+      clipLeftValue.jump(left);
+      clipRightValue.jump(right);
+      clipTopValue.jump(top);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,9 +89,19 @@ export function ExclusionTabs() {
               if (selectedTab === tab.name) {
                 return;
               }
-
               setSelectedTab(tab.name);
-              animateClipValues(getClipValues(event.currentTarget));
+
+              const newClipValues = getClipValues(event.currentTarget);
+
+              animate(clipLeftValue, newClipValues.left, {
+                duration: DURATION,
+              });
+              animate(clipRightValue, newClipValues.right, {
+                duration: DURATION,
+              });
+              animate(clipTopValue, newClipValues.top, {
+                duration: DURATION,
+              });
             }}
           >
             {tab.icon}
