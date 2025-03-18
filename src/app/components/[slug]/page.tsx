@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 
 import {ChevronRightIcon} from '@radix-ui/react-icons';
 
+import {ComponentsPagination} from '~/components/components-pagination';
 import {ContentsTable} from '~/components/contents-table';
 import * as Breadcrumbs from '~/components/primitives/breadcrumbs';
 import {Link} from '~/components/primitives/link';
@@ -43,6 +44,8 @@ export default async function Page({params}: PageProps) {
         </Breadcrumbs.Root>
 
         <Content />
+
+        <ComponentsPagination slug={slug} />
       </div>
 
       <ContentsTable />
