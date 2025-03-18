@@ -33,3 +33,8 @@ export interface NpmCommands {
 }
 
 export type PackageManagersType = (typeof PackageManagers)[number];
+
+export interface Route {
+  title: string;
+  slug: string;
+}
