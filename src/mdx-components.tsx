@@ -124,6 +124,7 @@ function createAnchorHeading(level: AnchorHeadingLevel) {
       <Comp
         className={s.title}
         id={anchor}
+        data-heading
         data-level={level}
         {...headingProps}
       >
