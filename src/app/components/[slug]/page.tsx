@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 
 import {ChevronRightIcon} from '@radix-ui/react-icons';
 
+import {ContentsTable} from '~/components/contents-table';
 import * as Breadcrumbs from '~/components/primitives/breadcrumbs';
 import {Link} from '~/components/primitives/link';
 import {getComponentsSlugs} from '~/lib/data/component-slugs';
@@ -30,17 +31,21 @@ export default async function Page({params}: PageProps) {
 
   return (
     <div className={s.main}>
-      <Breadcrumbs.Root>
-        <Breadcrumbs.Item>
-          <Link href="/components">Components</Link>
-          <ChevronRightIcon aria-hidden />
-        </Breadcrumbs.Item>
-        <Breadcrumbs.Item>
-          <Link>{metadata.title}</Link>
-        </Breadcrumbs.Item>
-      </Breadcrumbs.Root>
+      <div className={s.content}>
+        <Breadcrumbs.Root>
+          <Breadcrumbs.Item>
+            <Link href="/components">Components</Link>
+            <ChevronRightIcon aria-hidden />
+          </Breadcrumbs.Item>
+          <Breadcrumbs.Item>
+            <Link>{metadata.title}</Link>
+          </Breadcrumbs.Item>
+        </Breadcrumbs.Root>
 
-      <Content />
+        <Content />
+      </div>
+
+      <ContentsTable />
     </div>
   );
 }
