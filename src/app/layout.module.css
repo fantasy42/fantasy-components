@@ -3,6 +3,7 @@
   margin: auto;
   max-width: var(--content-width-with-padding);
   padding: 0 var(--content-padding);
+  overflow: clip;
 }
 
 .bg {
