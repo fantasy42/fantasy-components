@@ -17,28 +17,28 @@ export default function Page() {
         <span aria-hidden>
           {titleText.split(' ').map((word, index) => (
             <React.Fragment key={word}>
-              <AnimatedComp className={s.word} delay={`${index * 0.15}s`}>
+              <AnimatedComponent className={s.word} delay={`${index * 0.15}s`}>
                 {word}
-              </AnimatedComp>{' '}
+              </AnimatedComponent>{' '}
             </React.Fragment>
           ))}
         </span>
       </h1>
-      <AnimatedComp className={s.description} delay="0.75s" as="h2">
+      <AnimatedComponent className={s.description} delay="0.75s" as="h2">
         Open source, created with modern tools and optimized for good
         performance
-      </AnimatedComp>
-      <AnimatedComp className={s.row} delay="0.9s">
+      </AnimatedComponent>
+      <AnimatedComponent className={s.row} delay="0.9s">
         <Chip color="blue">Portfolio</Chip>
         <Chip color="orange">Blog</Chip>
         <Chip color="white">Personal</Chip>
-      </AnimatedComp>
-      <AnimatedComp delay="1s">
+      </AnimatedComponent>
+      <AnimatedComponent delay="1s">
         <Link className={s.link} href="/components">
           View Components
           <ChevronRightIcon aria-hidden />
         </Link>
-      </AnimatedComp>
+      </AnimatedComponent>
     </div>
   );
 }
@@ -47,7 +47,7 @@ interface AnimatedCompProps extends React.ComponentProps<'div'> {
   delay?: string;
   as?: React.ElementType;
 }
-function AnimatedComp(props: AnimatedCompProps) {
+function AnimatedComponent(props: AnimatedCompProps) {
   const {
     delay = '0s',
     as: Component = 'div',

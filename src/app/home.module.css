@@ -12,7 +12,7 @@
 }
 
 .root [data-animate] {
-  transition-property: opacity, transform, filter;
+  transition-property: opacity, transform;
   transition-duration: 1s;
   transition-timing-function: ease;
   transition-delay: var(--delay, 0s);
@@ -21,7 +21,6 @@
     @starting-style {
       opacity: 0;
       transform: translateY(20%);
-      filter: blur(20px);
     }
   }
 }
