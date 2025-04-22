@@ -2,17 +2,12 @@
 
 Browse ideas, inspiration and source code for you projects.
 
-## Development
+![img](https://i.imgur.com/VhqDApu.png)
 
-Set the required environment variables in your `.env.local`:
+Just some interesting things for me that I did when I had nothing to do.
 
-```
-NEXT_PUBLIC_APP_URL=localhost:3000
-```
+if you wanna make an addition + PR, go for it.
 
-Install the dependencies and run the app:
+## License
 
-```shell
-pnpm intsall
-pnpm dev
-```
+[MIT](./LICENSE)
