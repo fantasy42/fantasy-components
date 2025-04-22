@@ -234,6 +234,7 @@ export default [
             props: false,
             params: false,
             env: false,
+            prop: false,
           },
         },
       ],

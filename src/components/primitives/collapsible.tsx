@@ -15,9 +15,9 @@ import {
 
 interface CollapsibleRootProps
   extends Omit<React.ComponentProps<'div'>, 'children'> {
-  open?: boolean;
-  onOpenChange?: React.Dispatch<React.SetStateAction<boolean>>;
   defaultOpen?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
   isDisabled?: boolean;
   children?:
     | ((props: {
@@ -28,19 +28,18 @@ interface CollapsibleRootProps
 }
 export function CollapsibleRoot(props: CollapsibleRootProps) {
   const {
-    isDisabled,
     children,
-    open,
+    open: openProp,
     onOpenChange,
     defaultOpen = false,
+    isDisabled,
     ...collapsibleRootProps
   } = props;
-  const [internalState, setInternalState] = React.useState(defaultOpen);
+
   const [isOpen, setIsOpen] = useControllableState({
-    controlledValue: open,
-    internalState,
+    prop: openProp,
+    defaultProp: defaultOpen,
     onChange: onOpenChange,
-    setInternalState,
   });
 
   const contentId = React.useId();
